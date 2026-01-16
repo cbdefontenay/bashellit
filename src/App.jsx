@@ -16,7 +16,7 @@ function App() {
     }, []);
 
     return (
-        <main className="m-20">
+        <main className="">
             {isError && <ErrorOs isError={isError}/>}
             {checkOsInfo && <h1>{checkOsInfo}</h1>}
         </main>
