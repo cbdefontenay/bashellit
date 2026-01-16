@@ -17,6 +17,7 @@
     "react-dom": "^19.2.3",
     "@tauri-apps/api": "^2.9.1",
     "@tauri-apps/plugin-opener": "^2.5.3",
+    "react-icons": "^5.5.0",
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {

@@ -9,6 +9,7 @@
     "npm:@tauri-apps/plugin-store@~2.4.2": "2.4.2",
     "npm:@vitejs/plugin-react@^4.6.0": "4.7.0_vite@7.3.1__picomatch@4.0.3_@babel+core@7.28.6",
     "npm:react-dom@^19.2.3": "19.2.3_react@19.2.3",
+    "npm:react-icons@^5.5.0": "5.5.0_react@19.2.3",
     "npm:react@^19.2.3": "19.2.3",
     "npm:tailwindcss@^4.1.18": "4.1.18",
     "npm:vite@^7.0.4": "7.3.1_picomatch@4.0.3"
@@ -898,6 +899,12 @@
         "scheduler"
       ]
     },
+    "react-icons@5.5.0_react@19.2.3": {
+      "integrity": "sha512-MEFcXdkP3dLo8uumGI5xN3lDFNsRtrjbOEKDLD7yv76v4wpnEq2Lt2qeHaQOr34I/wPN3s3+N08WkQ+CW37Xiw==",
+      "dependencies": [
+        "react"
+      ]
+    },
     "react-refresh@0.17.0": {
       "integrity": "sha512-z6F7K9bV85EfseRCp2bzrpyQ0Gkw1uLoCel9XBVWPg/TjRj94SkJzUTGfOa4bs7iJvBWtQG0Wq7wnI0syw3EBQ=="
     },
@@ -1001,6 +1008,7 @@
         "npm:@tauri-apps/plugin-store@~2.4.2",
         "npm:@vitejs/plugin-react@^4.6.0",
         "npm:react-dom@^19.2.3",
+        "npm:react-icons@^5.5.0",
         "npm:react@^19.2.3",
         "npm:tailwindcss@^4.1.18",
         "npm:vite@^7.0.4"
