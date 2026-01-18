@@ -1,12 +1,11 @@
 import {useState, useEffect} from "react";
 import {RxCross1} from "react-icons/rx";
-import {useTheme} from "../context/ThemeContext"; // Adjust the import path
+import {useTheme} from "../context/ThemeContext";
 
 export default function SettingsComponent({isOpen, onClose}) {
     const {theme, changeTheme, isLoading} = useTheme();
     const [currentTheme, setCurrentTheme] = useState(theme);
 
-    // Update local state when theme changes from context
     useEffect(() => {
         setCurrentTheme(theme);
     }, [theme]);
@@ -41,7 +40,8 @@ export default function SettingsComponent({isOpen, onClose}) {
                 className="settings-popup relative bg-(--surface) text-(--on-surface) rounded-lg shadow-lg p-6 w-96 max-w-[90vw] border border-(--outline-variant)">
                 {/* Header */}
                 <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-xl font-bold text-(--on-surface)">Settings</h2>
+                    <h2 className="text-xl font-bold text-(--on-surface)">
+                        Settings</h2>
                     <button
                         onClick={onClose}
                         className="p-2 hover:bg-(--surface-variant) rounded-full transition-colors"
@@ -54,7 +54,9 @@ export default function SettingsComponent({isOpen, onClose}) {
                 {/* Theme settings */}
                 <div className="space-y-4">
                     <div>
-                        <h3 className="text-lg font-semibold mb-3 text-(--on-surface)">Theme</h3>
+                        <h3 className="text-lg font-semibold mb-3 text-(--on-surface)">
+                            Theme
+                        </h3>
                         {isLoading ? (
                             <div className="flex justify-center py-8">
                                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-(--primary)"></div>
