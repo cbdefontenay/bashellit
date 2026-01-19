@@ -9,7 +9,7 @@ export default function UpperTabBar() {
             <div className="flex h-full">
                 <button
                     onClick={() => setActiveTab("files")}
-                    className={`px-6 text-sm font-medium transition-colors ${
+                    className={`cursor-pointer px-6 text-sm font-medium transition-colors ${
                         activeTab === "files"
                             ? "bg-(--primary) text-(--on-primary) border-b-2 border-(--primary)"
                             : "hover:bg-(--surface-variant) text-(--on-surface-variant)"

@@ -27,7 +27,7 @@ pub fn run() {
             get_sidebar_state,
             show_settings,
             store_and_set_theme,
-            store_and_get_theme
+            store_and_get_theme,
         ])
         .run(generate_context!())
         .expect("error while running tauri application");
