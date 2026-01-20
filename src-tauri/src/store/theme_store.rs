@@ -4,10 +4,13 @@ use tauri_plugin_store::StoreBuilder;
 
 #[command]
 pub async fn store_and_set_theme(app: AppHandle, app_theme: String) -> Result<String, String> {
-    let valid_themes = vec!["light", "dark"];
+    let valid_themes = vec!["light", "dark", "kali", "bash-light", "bash-dark"];
 
     if !valid_themes.contains(&app_theme.as_str()) {
-        return Err(format!("Invalid theme: {}. Available themes: light, dark", app_theme));
+        return Err(format!(
+            "Invalid theme: {}. Available themes: light, dark, kali, bash-light, bash-dark",
+            app_theme
+        ));
     }
 
     let store_path = app

@@ -4,12 +4,16 @@
     "npm:@tailwindcss/vite@^4.1.18": "4.1.18_vite@7.3.1__picomatch@4.0.3",
     "npm:@tauri-apps/api@^2.9.1": "2.9.1",
     "npm:@tauri-apps/cli@^2.9.6": "2.9.6",
+    "npm:@tauri-apps/plugin-dialog@2.6": "2.6.0",
     "npm:@tauri-apps/plugin-opener@^2.5.3": "2.5.3",
     "npm:@tauri-apps/plugin-os@~2.3.2": "2.3.2",
     "npm:@tauri-apps/plugin-store@~2.4.2": "2.4.2",
+    "npm:@tauri-apps/plugin-upload@2.4": "2.4.0",
     "npm:@vitejs/plugin-react@^4.6.0": "4.7.0_vite@7.3.1__picomatch@4.0.3_@babel+core@7.28.6",
+    "npm:prismjs@^1.30.0": "1.30.0",
     "npm:react-dom@^19.2.3": "19.2.3_react@19.2.3",
     "npm:react-icons@^5.5.0": "5.5.0_react@19.2.3",
+    "npm:react-simple-code-editor@~0.14.1": "0.14.1_react@19.2.3_react-dom@19.2.3__react@19.2.3",
     "npm:react@^19.2.3": "19.2.3",
     "npm:tailwindcss@^4.1.18": "4.1.18",
     "npm:vite@^7.0.4": "7.3.1_picomatch@4.0.3"
@@ -609,6 +613,12 @@
       ],
       "bin": true
     },
+    "@tauri-apps/plugin-dialog@2.6.0": {
+      "integrity": "sha512-q4Uq3eY87TdcYzXACiYSPhmpBA76shgmQswGkSVio4C82Sz2W4iehe9TnKYwbq7weHiL88Yw19XZm7v28+Micg==",
+      "dependencies": [
+        "@tauri-apps/api"
+      ]
+    },
     "@tauri-apps/plugin-opener@2.5.3": {
       "integrity": "sha512-CCcUltXMOfUEArbf3db3kCE7Ggy1ExBEBl51Ko2ODJ6GDYHRp1nSNlQm5uNCFY5k7/ufaK5Ib3Du/Zir19IYQQ==",
       "dependencies": [
@@ -623,6 +633,12 @@
     },
     "@tauri-apps/plugin-store@2.4.2": {
       "integrity": "sha512-0ClHS50Oq9HEvLPhNzTNFxbWVOqoAp3dRvtewQBeqfIQ0z5m3JRnOISIn2ZVPCrQC0MyGyhTS9DWhHjpigQE7A==",
+      "dependencies": [
+        "@tauri-apps/api"
+      ]
+    },
+    "@tauri-apps/plugin-upload@2.4.0": {
+      "integrity": "sha512-ebhsqXmiELnpKu2p46EZG14UKxvbVP28BpJBiHzR+quWVrMxm40518PXTDlXXcJUW5CkbmP/6RL5ERSVXBL8sQ==",
       "dependencies": [
         "@tauri-apps/api"
       ]
@@ -892,6 +908,9 @@
         "source-map-js"
       ]
     },
+    "prismjs@1.30.0": {
+      "integrity": "sha512-DEvV2ZF2r2/63V+tK8hQvrR2ZGn10srHbXviTlcv7Kpzw8jWiNTqbVgjO3IY8RxrrOUF8VPMQQFysYYYv0YZxw=="
+    },
     "react-dom@19.2.3_react@19.2.3": {
       "integrity": "sha512-yELu4WmLPw5Mr/lmeEpox5rw3RETacE++JgHqQzd2dg+YbJuat3jH4ingc+WPZhxaoFzdv9y33G+F7Nl5O0GBg==",
       "dependencies": [
@@ -907,6 +926,13 @@
     },
     "react-refresh@0.17.0": {
       "integrity": "sha512-z6F7K9bV85EfseRCp2bzrpyQ0Gkw1uLoCel9XBVWPg/TjRj94SkJzUTGfOa4bs7iJvBWtQG0Wq7wnI0syw3EBQ=="
+    },
+    "react-simple-code-editor@0.14.1_react@19.2.3_react-dom@19.2.3__react@19.2.3": {
+      "integrity": "sha512-BR5DtNRy+AswWJECyA17qhUDvrrCZ6zXOCfkQY5zSmb96BVUbpVAv03WpcjcwtCwiLbIANx3gebHOcXYn1EHow==",
+      "dependencies": [
+        "react",
+        "react-dom"
+      ]
     },
     "react@19.2.3": {
       "integrity": "sha512-Ku/hhYbVjOQnXDZFv2+RibmLFGwFdeeKHFcOTlrt7xplBnya5OGn/hIRDsqDiSUcfORsDC7MPxwork8jBwsIWA=="
@@ -1003,12 +1029,16 @@
         "npm:@tailwindcss/vite@^4.1.18",
         "npm:@tauri-apps/api@^2.9.1",
         "npm:@tauri-apps/cli@^2.9.6",
+        "npm:@tauri-apps/plugin-dialog@2.6",
         "npm:@tauri-apps/plugin-opener@^2.5.3",
         "npm:@tauri-apps/plugin-os@~2.3.2",
         "npm:@tauri-apps/plugin-store@~2.4.2",
+        "npm:@tauri-apps/plugin-upload@2.4",
         "npm:@vitejs/plugin-react@^4.6.0",
+        "npm:prismjs@^1.30.0",
         "npm:react-dom@^19.2.3",
         "npm:react-icons@^5.5.0",
+        "npm:react-simple-code-editor@~0.14.1",
         "npm:react@^19.2.3",
         "npm:tailwindcss@^4.1.18",
         "npm:vite@^7.0.4"

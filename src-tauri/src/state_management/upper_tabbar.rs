@@ -16,7 +16,10 @@ pub fn set_active_tab(state: State<UpperTabBarState>, tab: String) -> Result<Str
     let valid_tabs = vec!["files", "settings"];
 
     if !valid_tabs.contains(&tab.as_str()) {
-        return Err(format!("Invalid tab: {}. Available tabs: files, settings", tab));
+        return Err(format!(
+            "Invalid tab: {}. Available tabs: files, settings",
+            tab
+        ));
     }
 
     let mut active_tab = state.active_tab.lock().unwrap();
