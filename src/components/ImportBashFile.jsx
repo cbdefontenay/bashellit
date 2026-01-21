@@ -11,7 +11,7 @@ export default function ImportBashFile() {
                     onClick={openFile}
                     title="Open Bash File"
                 >
-                    <FaFileCode className="text-(--primary) hover:text-(--on-surface) transition-colors" />
+                    <FaFileCode className="cursor-pointer text-(--primary) hover:text-(--on-surface) transition-colors" />
                 </button>
             </div>
         </>

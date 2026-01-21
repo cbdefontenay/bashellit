@@ -118,7 +118,7 @@ export default function Editor({ isResizing }) {
     }, [currentFile, code]);
 
     useEffect(() => {
-        const handleKeyDown = (e) => {
+        const handleKeyDown = (e)    => {
             if ((e.ctrlKey || e.metaKey) && e.key === 's') {
                 e.preventDefault();
                 handleSave();

@@ -81,7 +81,9 @@ export default function Sidebar({onResizeStateChange}) {
         <div
             style={{width: sidebarWidth}}
             className={`rounded-lg pt-3 h-full bg-(--surface-container) text-(--on-surface) border-r border-(--outline-variant) flex flex-col relative group ${isResizing ? 'select-none' : ''}`}>
-            <div className="flex flex-row items-center justify-between px-4">
+
+            {/* Header section - fixed height */}
+            <div className="flex flex-row items-center justify-between px-4 flex-shrink-0">
                 <button
                     className="bg-transparent"
                     onClick={toggleSidebar}>
@@ -89,12 +91,16 @@ export default function Sidebar({onResizeStateChange}) {
                 </button>
                 <ImportBashFile />
             </div>
-            <div className="pt-4 pl-4 pb-2 border-b border-(--outline-variant)">
+
+            {/* Recent Files header - fixed height */}
+            <div className="pt-4 pl-4 pb-2 border-b border-(--outline-variant) flex-shrink-0">
                 <h2 className="text-(--on-surface-variant) text-xs font-bold uppercase tracking-widest">
                     Recent Files
                 </h2>
             </div>
-            <div className="flex-1 overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-(--outline-variant) hover:scrollbar-thumb-(--outline)">
+
+            {/* Scrollable area - this should take remaining space */}
+            <div className="flex-1 min-h-0 overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-(--outline-variant) hover:scrollbar-thumb-(--outline)">
                 {recentFiles.length === 0 ? (
                     <div className="text-xs text-(--on-surface-variant) italic p-4 text-center">
                         No recent files. Open one to get started.
@@ -139,6 +145,5 @@ export default function Sidebar({onResizeStateChange}) {
                 className="absolute top-0 right-0 w-1.5 h-full cursor-col-resize hover:bg-(--primary)/50 transition-colors z-10"
             />
         </div>
-    )
-        ;
+    );
 }
