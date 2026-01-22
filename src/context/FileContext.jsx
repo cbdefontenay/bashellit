@@ -1,9 +1,9 @@
-﻿import { createContext, useContext, useEffect, useState } from "react";
-import { invoke } from "@tauri-apps/api/core";
+﻿import {createContext, useContext, useEffect, useState} from "react";
+import {invoke} from "@tauri-apps/api/core";
 
 const FileContext = createContext();
 
-export function FileProvider({ children }) {
+export function FileProvider({children}) {
     const [recentFiles, setRecentFiles] = useState([]);
     const [currentFile, setCurrentFile] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -14,11 +14,6 @@ export function FileProvider({ children }) {
                 setIsLoading(true);
                 const files = await invoke("get_recent_files");
                 setRecentFiles(files);
-
-                // Optional: Automatically open the first file if available
-                // if (files.length > 0) {
-                //     setCurrentFile(files[0]);
-                // }
             } catch (error) {
                 console.error("Failed to load recent files:", error);
             } finally {
@@ -31,10 +26,13 @@ export function FileProvider({ children }) {
 
     const openFile = async () => {
         try {
-            const file = await invoke("pick_bash_file");
-            if (file) {
-                setCurrentFile(file);
-                await invoke("add_recent_file", { file });
+            const files = await invoke("pick_bash_files");
+            if (files && files.length > 0) {
+                // Select the first picked file as current
+                setCurrentFile(files[0]);
+
+                // Add all files to recent files
+                await invoke("add_recent_files", {newFiles: files});
 
                 // Refresh recent files list
                 const updatedFiles = await invoke("get_recent_files");
@@ -53,7 +51,7 @@ export function FileProvider({ children }) {
 
     const removeFile = async (path) => {
         try {
-            await invoke("remove_recent_file", { path });
+            await invoke("remove_recent_file", {path});
             const updatedFiles = await invoke("get_recent_files");
             setRecentFiles(updatedFiles);
 
@@ -69,13 +67,13 @@ export function FileProvider({ children }) {
         if (!currentFile) return;
 
         try {
-            await invoke("save_file", { path: currentFile.path, content });
+            await invoke("save_file", {path: currentFile.path, content});
 
-            const updatedFile = { ...currentFile, content };
+            const updatedFile = {...currentFile, content};
             setCurrentFile(updatedFile);
 
-            // Update in recent files list too
-            await invoke("add_recent_file", { file: updatedFile });
+            // Update in recent files list
+            await invoke("add_recent_file", {file: updatedFile});
             const updatedFiles = await invoke("get_recent_files");
             setRecentFiles(updatedFiles);
         } catch (error) {
@@ -86,7 +84,7 @@ export function FileProvider({ children }) {
 
     const updateCurrentFileContent = (content) => {
         if (currentFile) {
-            setCurrentFile({ ...currentFile, content });
+            setCurrentFile({...currentFile, content});
         }
     };
 

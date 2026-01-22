@@ -80,7 +80,7 @@ export default function Sidebar({onResizeStateChange}) {
     return (
         <div
             style={{width: sidebarWidth}}
-            className={`rounded-lg pt-3 h-full bg-(--surface-container) text-(--on-surface) border-r border-(--outline-variant) flex flex-col relative group ${isResizing ? 'select-none' : ''}`}>
+            className={`rounded-lg pt-3 h-full overflow-hidden bg-(--surface-container) text-(--on-surface) border-r border-(--outline-variant) flex flex-col relative group ${isResizing ? 'select-none' : ''}`}>
 
             {/* Header section - fixed height */}
             <div className="flex flex-row items-center justify-between px-4 flex-shrink-0">
@@ -89,7 +89,7 @@ export default function Sidebar({onResizeStateChange}) {
                     onClick={toggleSidebar}>
                     <GiHamburgerMenu className="cursor-pointer text-(--on-surface)"/>
                 </button>
-                <ImportBashFile />
+                <ImportBashFile/>
             </div>
 
             {/* Recent Files header - fixed height */}
@@ -100,7 +100,8 @@ export default function Sidebar({onResizeStateChange}) {
             </div>
 
             {/* Scrollable area - this should take remaining space */}
-            <div className="flex-1 min-h-0 overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-(--outline-variant) hover:scrollbar-thumb-(--outline)">
+            <div
+                className="flex-1 min-h-0 overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-(--outline-variant) hover:scrollbar-thumb-(--outline)">
                 {recentFiles.length === 0 ? (
                     <div className="text-xs text-(--on-surface-variant) italic p-4 text-center">
                         No recent files. Open one to get started.

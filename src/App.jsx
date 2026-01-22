@@ -17,25 +17,25 @@ function App() {
         await checkOsData({setCheckOsInfo, setIsError});
     }
 
-    useEffect(() => {
-        checkOs();
-    }, []);
+    // useEffect(() => {
+    //     checkOs();
+    // }, []);
 
     return (
         <ThemeProvider>
             <FileProvider>
                 <main className="h-screen flex flex-col">
-                    {isError && <ErrorOs isError={isError}/>}
-                    {checkOsInfo && (
-                        <>
-                            <UpperTabBar/>
+                    {/*{isError && <ErrorOs isError={isError}/>}*/}
+                    {/*{checkOsInfo && (*/}
+                    <>
+                        <UpperTabBar/>
 
-                            <div className="flex flex-1 overflow-hidden">
-                                <Sidebar onResizeStateChange={setIsResizing}/>
-                                <Editor isResizing={isResizing}/>
-                            </div>
-                        </>
-                    )}
+                        <div className="flex flex-1 overflow-hidden">
+                            <Sidebar onResizeStateChange={setIsResizing}/>
+                            <Editor isResizing={isResizing}/>
+                        </div>
+                    </>
+                    {/*)}*/}
                 </main>
             </FileProvider>
         </ThemeProvider>
