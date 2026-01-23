@@ -15,16 +15,16 @@ export default function UpperTabBar() {
             <div className="h-8 bg-(--surface) text-(--on-surface) border-b border-(--outline-variant) flex items-center w-full">
                 {/* Tabs */}
                 <div className="flex h-full items-center font-mono">
-                    <button
-                        onClick={() => setActiveTab("files")}
-                        className={`h-full cursor-pointer px-3 text-xs font-medium transition-colors ${
-                            activeTab === "files"
-                                ? "bg-(--primary) text-(--on-primary) border-b-2 border-(--primary)"
-                                : "hover:bg-(--surface-variant) text-(--on-surface-variant)"
-                        }`}
-                    >
-                        Files
-                    </button>
+                    {/*<button*/}
+                    {/*    onClick={() => setActiveTab("files")}*/}
+                    {/*    className={`h-full cursor-pointer px-3 text-xs font-medium transition-colors ${*/}
+                    {/*        activeTab === "files"*/}
+                    {/*            ? "bg-(--primary) text-(--on-primary) border-b-2 border-(--primary)"*/}
+                    {/*            : "hover:bg-(--surface-variant) text-(--on-surface-variant)"*/}
+                    {/*    }`}*/}
+                    {/*>*/}
+                    {/*    Files*/}
+                    {/*</button>*/}
 
                     <button
                         onClick={() => {

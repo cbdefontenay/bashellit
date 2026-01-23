@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
 import {RxCross1} from "react-icons/rx";
 import {useTheme} from "../context/ThemeContext";
+import GitHubHint from "./GitHubHint.jsx";
 
 export default function SettingsComponent({isOpen, onClose}) {
     const {theme, changeTheme, isLoading} = useTheme();
@@ -174,6 +175,8 @@ export default function SettingsComponent({isOpen, onClose}) {
                         Current theme: <span className="font-medium text-(--primary)">{currentTheme}</span>
                     </div>
                 </div>
+                {/* GitHub hint */}
+                <GitHubHint />
 
                 {/* Footer */}
                 <div className="mt-6 pt-4 border-t border-(--surface-variant)">
