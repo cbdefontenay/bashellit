@@ -52,7 +52,7 @@ Planned improvements include:
 
 ## Screenshots
 
-Screenshots will be added soon.
+<img width="1916" height="990" alt="image" src="bashellit.png" />
 
 ## Feedback and Contributions
 
