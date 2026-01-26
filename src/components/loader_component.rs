@@ -6,14 +6,9 @@ pub fn LoaderComponent() -> Element {
     rsx! {
         div { class: "fixed inset-0 z-[100] flex flex-col items-center justify-center bg-(--background) transition-all duration-500",
             div { class: "relative",
-                // Animated outer glow
                 div { class: "absolute inset-0 bg-(--primary) opacity-20 blur-3xl rounded-full animate-pulse" }
-
                 div { class: "relative flex flex-col items-center",
-                    // Professional Spinner
                     LoaderIcon { class: "w-16 h-16 text-(--primary)" }
-
-                    // Logo/Initial in the middle
                     div { class: "absolute inset-0 flex items-center justify-center pt-0",
                         span { class: "text-xl font-black text-(--primary) opacity-80",
                             "B"
@@ -24,7 +19,7 @@ pub fn LoaderComponent() -> Element {
 
             div { class: "mt-8 flex flex-col items-center space-y-2",
                 h1 { class: "text-2xl font-bold tracking-[0.2em] text-(--primary) uppercase",
-                    "Bashellite"
+                    "Bashellit"
                 }
 
                 // Animated loading dots

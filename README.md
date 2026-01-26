@@ -16,7 +16,6 @@ It is designed for **writing** Bash scripts, not for replacing a full IDE or aut
 
 - Simple and clean interface
 - Syntax highlighting for Bash
-- Code formatting
 - Centralized storage for your Bash scripts
 - One-click access to open a terminal at the script location
 
@@ -36,9 +35,9 @@ Bashellit is a fully local application. It does not store or transmit any user d
 
 It is built using:
 
-- **Tauri**
-- **React**
+- **Dioxus**
 - **Rust**
+- **Tailwindcss**
 
 This combination keeps the application small, fast, and secure.
 

@@ -5,7 +5,7 @@ use std::fs::read_to_string;
 use std::time;
 use time::Duration;
 use crate::components::{EditorComponent, LoaderComponent, SettingsComponent, SideBarComponent, UpperBarComponent};
-use dioxus::desktop::{Config, WindowBuilder};
+use dioxus::desktop::{window, Config, LogicalSize, WindowBuilder};
 use dioxus::prelude::*;
 use serde::{Deserialize, Serialize};
 use serde_json;
@@ -42,7 +42,9 @@ pub static SHOW_SETTINGS: GlobalSignal<bool> = Signal::global(|| false);
 
 fn main() {
     let window = WindowBuilder::new()
-        .with_title("Bashellite")
+        .with_title("Bashellit")
+        .with_visible(false)
+        .with_inner_size(LogicalSize::new(4000, 2000))
         .with_resizable(true)
         .with_always_on_top(false)
         .with_focused(true)
@@ -55,22 +57,26 @@ fn main() {
 
 #[component]
 fn App() -> Element {
+    use_effect(move || {
+        window().set_visible(true);
+    });
+
     rsx! {
         document::Link { rel: "icon", href: FAVICON }
         Stylesheet { href: MAIN_CSS }
         Stylesheet { href: TAILWIND_CSS }
 
-        Bashellite {}
+        Bashellit {}
     }
 }
 
 #[component]
-fn Bashellite() -> Element {
+fn Bashellit() -> Element {
     let mut is_collapsed = use_signal(|| false);
     let mut is_loading = use_signal(|| true);
 
     let _ = use_resource(move || async move {
-        sleep(Duration::from_millis(1200)).await;
+        sleep(Duration::from_millis(2000)).await;
         is_loading.set(false);
     });
 
