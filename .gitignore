@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+/assets/tailwind.css
+/settings.json
+/AGENTS.md
+/target

@@ -1,50 +1,59 @@
-# Development
+# Bashellit
 
-Your new bare-bones project includes minimal organization with a single `main.rs` file and a few assets.
+**Bashellit** is a lightweight editor dedicated to writing Bash scripts on Linux.
 
-```
-project/
-├─ assets/ # Any assets that are used by the app should be placed here
-├─ src/
-│  ├─ main.rs # main.rs is the entry point to your application and currently contains all components for the app
-├─ Cargo.toml # The Cargo.toml file defines the dependencies and feature flags for your project
-```
+There are already excellent IDEs and editors available, such as VS Code, but they often come with a large footprint and many features that are unnecessary when your only goal is to write simple shell scripts. Bashellit was born out of that frustration: the need for a focused, minimal tool that does one thing well.
 
-### Automatic Tailwind (Dioxus 0.7+)
+Bashellit provides a clean environment to edit, and organize all your Bash scripts in one place. You just have to import your scripts.
 
-As of Dioxus 0.7, there no longer is a need to manually install tailwind. Simply `dx serve` and you're good to go!
+## Philosophy
 
-Automatic tailwind is supported by checking for a file called `tailwind.css` in your app's manifest directory (next to Cargo.toml). To customize the file, use the dioxus.toml:
+Bashellit is intentionally simple.
 
-```toml
-[application]
-tailwind_input = "my.css"
-tailwind_output = "assets/out.css" # also customize the location of the out file!
-```
+It is designed for **writing** Bash scripts, not for replacing a full IDE or automating script execution. The goal is to stay lightweight, fast, and predictable while covering the essentials needed for everyday shell scripting.
 
-### Tailwind Manual Install
+## Features
 
-To use tailwind plugins or manually customize tailwind, you can can install the Tailwind CLI and use it directly.
+- Simple and clean interface
+- Syntax highlighting for Bash
+- Code formatting
+- Centralized storage for your Bash scripts
+- One-click access to open a terminal at the script location
 
-### Tailwind
-1. Install npm: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
-2. Install the Tailwind CSS CLI: https://tailwindcss.com/docs/installation/tailwind-cli
-3. Run the following command in the root of the project to start the Tailwind CSS compiler:
+Bashellit does **not** execute scripts directly. Instead, when a script is open, you can click the **Open Terminal** button to launch a shell in the script’s directory and run it manually. This keeps execution explicit and under your control.
 
-```bash
-npx @tailwindcss/cli -i ./input.css -o ./assets/tailwind.css --watch
-```
+## What Bashellit Is Not
 
-### Serving Your App
+- A full IDE
+- A script runner or automation tool (at least for now)
+- A replacement for advanced editors like VS Code
 
-Run the following command in the root of your project to start developing with the default platform:
+Bashellit focuses on clarity and simplicity over feature density.
 
-```bash
-dx serve
-```
+## Technology
 
-To run for a different platform, use the `--platform platform` flag. E.g.
-```bash
-dx serve --platform desktop
-```
+Bashellit is a fully local application. It does not store or transmit any user data.
 
+It is built using:
+
+- **Tauri**
+- **React**
+- **Rust**
+
+This combination keeps the application small, fast, and secure.
+
+## Roadmap
+
+Planned improvements include:
+
+- Multilingual support
+- General usability and performance improvements
+- Additional quality-of-life features, while keeping the tool lightweight
+
+## Screenshots
+
+<img width="1918" height="1041" alt="image" src="bashellit.png" />
+
+## Feedback and Contributions
+
+If you like the project, consider starring the repository. Feedback, ideas, and suggestions are always welcome.

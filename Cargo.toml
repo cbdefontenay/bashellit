@@ -1,0 +1,17 @@
+[package]
+name = "bashellite"
+version = "0.1.0"
+authors = ["Cyp"]
+edition = "2021"
+
+[dependencies]
+dioxus = { version = "0.7.3", features = [] }
+rfd = "0.17.2"
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = "1.0.149"
+syntect = { version = "5.3.0", default-features = false, features = ["parsing", "default-syntaxes", "regex-fancy"] }
+tokio = { version = "1.49.0", features = ["time", "rt"] }
+
+[features]
+default = ["desktop"]
+desktop = ["dioxus/desktop"]
