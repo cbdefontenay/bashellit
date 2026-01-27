@@ -1,4 +1,5 @@
 ﻿use std::env::consts::OS;
+use std::env::var;
 use std::path::Path;
 use std::process::{Command, Stdio};
 
@@ -22,6 +23,7 @@ pub fn open_shell_for_active_file() -> Result<(), String> {
     open_shell_in_dir(&dir)
 }
 
+/// Search for the OS of the user and tries different shells.
 fn open_shell_in_dir(dir: &Path) -> Result<(), String> {
     if OS != "linux" {
         return Err("Linux only".to_string());
@@ -38,7 +40,7 @@ fn open_shell_in_dir(dir: &Path) -> Result<(), String> {
     ];
 
     // If the user has a preferred terminal env var, put it at the start
-    let env_term = std::env::var("TERMINAL").ok();
+    let env_term = var("TERMINAL").ok();
     if let Some(ref t) = env_term {
         candidates.insert(0, t.as_str());
     }

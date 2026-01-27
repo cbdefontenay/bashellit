@@ -59,6 +59,7 @@ fn main() {
 
 #[component]
 fn App() -> Element {
+    // This use_effect is used for preventing the app to launch first without any styling.
     use_effect(move || {
         window().set_visible(true);
     });
