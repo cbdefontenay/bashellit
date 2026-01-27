@@ -1,0 +1,77 @@
+name: bashellit
+base: core22
+version: '0.1.0'
+summary: A minimal and clean editor for Bash scripts.
+description: |
+  Bashellit is a lightweight, focused editor designed specifically for writing 
+  Bash scripts on Linux. Built for developers who find full-scale IDEs too
+  bloated for simple shell scripting, it provides a clean and very minimalist environment.
+  With Bashellit all your scrips are stored locally in the same place so you do not have to navigate to each script individually.
+
+grade: stable
+confinement: strict
+
+layout:
+  /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/webkit2gtk-4.1:
+    bind: $SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/webkit2gtk-4.1
+
+apps:
+  bashellit:
+    command: usr/bin/bashellit
+    desktop: usr/share/applications/bashellit.desktop
+    extensions: [ gnome ]
+    environment:
+      GDK_GL: disable
+
+package-repositories:
+  - type: apt
+    components: [ main ]
+    suites: [ noble ]
+    key-id: 78E1918602959B9C59103100F1831DDAFC42E99D
+    url: http://ppa.launchpad.net/snappy-dev/snapcraft-daily/ubuntu
+
+parts:
+  build-app:
+    plugin: dump
+    build-snaps:
+      - node/20/stable
+      - rustup/latest/stable
+    build-packages:
+      - libwebkit2gtk-4.1-dev
+      - build-essential
+      - curl
+      - wget
+      - file
+      - libxdo-dev
+      - libssl-dev
+      - libayatana-appindicator3-dev
+      - librsvg2-dev
+      - dpkg
+      - xdg-utils
+    stage-packages:
+      - libwebkit2gtk-4.1-0
+      - libayatana-appindicator3-1
+    source: .
+    override-build: |
+      set -eu
+      export PATH="$HOME/.cargo/bin:$PATH"
+      
+      # Build the Rust binary
+      cargo build --release
+    
+      # Bundle the Dioxus app
+      dx bundle --desktop --release
+    
+      # Copy binary
+      install -Dm755 target/dx/bashellit/bundle/linux/bundle/deb/Bashellit_0.1.0_amd64/usr/bin/bashellit $SNAPCRAFT_PART_INSTALL/usr/bin/bashellit
+    
+      # Copy assets
+      mkdir -p $SNAPCRAFT_PART_INSTALL/usr/lib/bashellit
+      cp -r target/dx/bashellit/bundle/linux/bundle/deb/Bashellit_0.1.0_amd64/usr/lib/bashellit/* $SNAPCRAFT_PART_INSTALL/usr/lib/bashellit/
+    
+      # Copy .desktop file
+      install -Dm644 target/dx/bashellit/bundle/linux/bundle/deb/Bashellit_0.1.0_amd64/usr/share/applications/Bashellit.desktop $SNAPCRAFT_PART_INSTALL/usr/share/applications/bashellit.desktop
+    
+      # Fix the desktop file to use correct Snap paths
+      sed -i -e "s|Exec=bashellit|Exec=$SNAP/usr/bin/bashellit|g" $SNAPCRAFT_PART_INSTALL/usr/share/applications/bashellit.desktop
+      sed -i -e "s|Icon=bashellit|Icon=$SNAP/usr/share/icons/hicolor/1024x1024/apps/bashellit.png|g" $SNAPCRAFT_PART_INSTALL/usr/share/applications/bashellit.desktop

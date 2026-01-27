@@ -1,10 +1,11 @@
 [application]
 name = "Bashellit"
+icon = ["icon.png"]
 
 [web.app]
 
 # HTML title tag content
-title = "bashellit"
+title = "Bashellit"
 
 # include `assets` in web platform
 [web.resource]
@@ -17,6 +18,9 @@ script = []
 
 [web.resource.dev]
 
-# Javascript code file
-# serve: [dev-server] only
 script = []
+
+[bundle]
+identifier = "com.bashellit"
+publisher = "Cyprien"
+icon = ["assets/app-icon.png"]
