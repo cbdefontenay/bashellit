@@ -1,6 +1,6 @@
 name: bashellit
 base: core22
-version: '0.1.0'
+version: '2.0.0'
 summary: A minimal and clean editor for Bash scripts.
 description: |
   Bashellit is a lightweight, focused editor designed specifically for writing 
@@ -52,26 +52,29 @@ parts:
       - libwebkit2gtk-4.1-0
       - libayatana-appindicator3-1
     source: .
+
     override-build: |
       set -eu
       export PATH="$HOME/.cargo/bin:$PATH"
-      
-      # Build the Rust binary
-      cargo build --release
     
-      # Bundle the Dioxus app
+      cargo install dioxus-cli --locked
+      cargo build --release
       dx bundle --desktop --release
     
-      # Copy binary
-      install -Dm755 target/dx/bashellit/bundle/linux/bundle/deb/Bashellit_0.1.0_amd64/usr/bin/bashellit $SNAPCRAFT_PART_INSTALL/usr/bin/bashellit
+      BUNDLE_DIR=target/dx/bashellit/bundle/linux/bundle/deb
+      DEB=Bashellit_0.1.0_amd64.deb
     
-      # Copy assets
-      mkdir -p $SNAPCRAFT_PART_INSTALL/usr/lib/bashellit
-      cp -r target/dx/bashellit/bundle/linux/bundle/deb/Bashellit_0.1.0_amd64/usr/lib/bashellit/* $SNAPCRAFT_PART_INSTALL/usr/lib/bashellit/
+      # Extract the deb
+      dpkg-deb -x $BUNDLE_DIR/$DEB extracted
     
-      # Copy .desktop file
-      install -Dm644 target/dx/bashellit/bundle/linux/bundle/deb/Bashellit_0.1.0_amd64/usr/share/applications/Bashellit.desktop $SNAPCRAFT_PART_INSTALL/usr/share/applications/bashellit.desktop
+      # Install binary
+      install -Dm755 extracted/usr/bin/bashellit \
+        $SNAPCRAFT_PART_INSTALL/usr/bin/bashellit
     
-      # Fix the desktop file to use correct Snap paths
-      sed -i -e "s|Exec=bashellit|Exec=$SNAP/usr/bin/bashellit|g" $SNAPCRAFT_PART_INSTALL/usr/share/applications/bashellit.desktop
-      sed -i -e "s|Icon=bashellit|Icon=$SNAP/usr/share/icons/hicolor/1024x1024/apps/bashellit.png|g" $SNAPCRAFT_PART_INSTALL/usr/share/applications/bashellit.desktop
+      # Install desktop file
+      install -Dm644 extracted/usr/share/applications/Bashellit.desktop \
+        $SNAPCRAFT_PART_INSTALL/usr/share/applications/bashellit.desktop
+    
+      # Install icons
+      cp -r extracted/usr/share/icons \
+        $SNAPCRAFT_PART_INSTALL/usr/share/
