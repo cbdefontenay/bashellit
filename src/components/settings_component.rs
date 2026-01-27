@@ -73,6 +73,26 @@ pub fn SettingsComponent() -> Element {
                                 }
                             }
                         }
+
+                        div {
+                            p { class: "text-xs font-bold text-(--on-surface-variant) mb-3 uppercase tracking-widest",
+                                "Shortcuts"
+                            }
+                            div { class: "space-y-2 text-sm text-(--on-surface)",
+                                div { class: "flex justify-between",
+                                    span { "Save" }
+                                    span { class: "font-mono bg-(--surface-container-highest) px-2 py-0.5 rounded",
+                                        "Ctrl + S"
+                                    }
+                                }
+                                div { class: "flex justify-between",
+                                    span { "Format Bash" }
+                                    span { class: "font-mono bg-(--surface-container-highest) px-2 py-0.5 rounded",
+                                        "Ctrl + Alt + L"
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
 

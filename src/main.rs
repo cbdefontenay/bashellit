@@ -1,11 +1,12 @@
 mod components;
 mod icons;
+mod helpers;
 
 use std::fs::read_to_string;
 use std::time;
 use time::Duration;
 use crate::components::{EditorComponent, LoaderComponent, SettingsComponent, SideBarComponent, UpperBarComponent};
-use dioxus::desktop::{window, Config, LogicalSize, WindowBuilder};
+use dioxus::desktop::{window, Config, WindowBuilder};
 use dioxus::prelude::*;
 use serde::{Deserialize, Serialize};
 use serde_json;
@@ -39,12 +40,13 @@ pub static SETTINGS: GlobalSignal<AppSettings> = Signal::global(|| {
 });
 
 pub static SHOW_SETTINGS: GlobalSignal<bool> = Signal::global(|| false);
+pub static LAST_ERROR: GlobalSignal<Option<String>> = Signal::global(|| None);
 
 fn main() {
     let window = WindowBuilder::new()
         .with_title("Bashellit")
         .with_visible(false)
-        .with_inner_size(LogicalSize::new(4000, 2000))
+        // .with_inner_size(LogicalSize::new(4000, 2000))
         .with_resizable(true)
         .with_always_on_top(false)
         .with_focused(true)
@@ -101,6 +103,18 @@ fn Bashellit() -> Element {
 
             if *SHOW_SETTINGS.read() {
                 SettingsComponent {}
+            }
+
+            // Error toast/banner
+            if let Some(msg) = LAST_ERROR.read().clone() {
+                div { class: "absolute bottom-4 right-4 bg-(--primary-container) text-(--on-primary-container) px-4 py-3 rounded-lg shadow-lg max-w-md flex items-start space-x-3 border border-(--outline-variant)",
+                    div { class: "text-sm whitespace-pre-wrap break-words", "{msg}" }
+                    button {
+                        class: "ml-3 text-xs font-bold opacity-80 hover:opacity-100 underline",
+                        onclick: move |_| *LAST_ERROR.write() = None,
+                        "Dismiss"
+                    }
+                }
             }
         }
     }

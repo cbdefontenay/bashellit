@@ -3,6 +3,8 @@ use crate::icons::SaveIcon;
 use crate::SETTINGS;
 use dioxus::prelude::*;
 use std::fs::{read_to_string, write};
+use document::eval;
+use crate::helpers::format_bash;
 
 #[component]
 pub fn EditorComponent() -> Element {
@@ -33,6 +35,12 @@ pub fn EditorComponent() -> Element {
         }
     };
 
+    let mut handle_format = move || {
+        let content = editor_content.read().clone();
+        let formatted = format_bash(&content);
+        editor_content.set(formatted);
+    };
+
     let content_val = editor_content.read();
     let lines: Vec<&str> = content_val.lines().collect();
 
@@ -45,11 +53,16 @@ pub fn EditorComponent() -> Element {
         div {
             class: "h-full flex-1 bg-(--background) text-(--on-background) p-6 flex flex-col overflow-hidden",
             onkeydown: move |evt| {
-                if evt.modifiers().contains(Modifiers::CONTROL)
-                    && evt.key() == Key::Character("s".into())
-                {
-                    evt.stop_propagation();
-                    handle_save();
+                if evt.modifiers().contains(Modifiers::CONTROL) {
+                    if evt.key() == Key::Character("s".into()) {
+                        evt.stop_propagation();
+                        handle_save();
+                    } else if evt.modifiers().contains(Modifiers::ALT)
+                        && evt.key() == Key::Character("l".into())
+                    {
+                        evt.stop_propagation();
+                        handle_format();
+                    }
                 }
             },
 
@@ -106,6 +119,24 @@ pub fn EditorComponent() -> Element {
                                 style: "line-height: 1.625rem",
                                 value: "{editor_content}",
                                 oninput: move |e| editor_content.set(e.value()),
+                                onkeydown: move |evt| {
+                                    if evt.key() == Key::Tab {
+                                        evt.prevent_default();
+                                        let _ = eval(
+                                            r#"
+                                                                        let textarea = document.activeElement;
+                                                                        if (textarea && textarea.tagName === 'TEXTAREA') {
+                                                                            let start = textarea.selectionStart;
+                                                                            let end = textarea.selectionEnd;
+                                                                            let value = textarea.value;
+                                                                            textarea.value = value.substring(0, start) + "    " + value.substring(end);
+                                                                            textarea.selectionStart = textarea.selectionEnd = start + 4;
+                                                                            textarea.dispatchEvent(new Event('input', { bubbles: true }));
+                                                                        }
+                                                                    "#,
+                                        );
+                                    }
+                                },
                                 spellcheck: false,
                                 wrap: "off",
                             }

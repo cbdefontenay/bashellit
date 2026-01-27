@@ -22,6 +22,28 @@ pub fn HamburgerIcon(class: Option<String>) -> Element {
 }
 
 #[component]
+pub fn TerminalIcon(class: Option<String>) -> Element {
+    let class = class.unwrap_or_else(|| "w-6 h-6".to_string());
+
+    rsx! {
+        svg {
+            class,
+            view_box: "0 0 24 24",
+            fill: "none",
+            stroke: "currentColor",
+           stroke_width: "2",
+            stroke_linecap: "round",
+            stroke_linejoin: "round",
+            xmlns: "http://www.w3.org/2000/svg",
+            // A simple terminal/chevron prompt icon
+            path { d: "M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z", opacity: "0.2" }
+            polyline { points: "7 9 10 12 7 15" }
+            line { x1: "12", y1: "15", x2: "17", y2: "15" }
+        }
+    }
+}
+
+#[component]
 pub fn SettingsIcon(class: Option<String>) -> Element {
     let class = class.unwrap_or_else(|| "w-6 h-6".to_string());
 
