@@ -48,7 +48,7 @@ pub static LAST_ERROR: GlobalSignal<Option<String>> = Signal::global(|| None);
 
 fn main() {
     let window = WindowBuilder::new()
-        // .with_title("Bashellit")
+        .with_title("Bashellit")
         .with_visible(false)
         // .with_inner_size(LogicalSize::new(4000, 2000))
         .with_resizable(true)
