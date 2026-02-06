@@ -5,6 +5,7 @@ use rfd::FileDialog;
 use serde_json::to_string;
 use std::fs::write;
 use std::path::Path;
+use crate::helpers::settings_path;
 
 #[component]
 pub fn SideBarComponent(
@@ -39,7 +40,7 @@ pub fn SideBarComponent(
             }
             if changed {
                 if let Ok(json) = to_string(&*settings_write) {
-                    let _ = write("settings.json", json);
+                    let _ = write(settings_path(), json);
                 }
             }
         }
@@ -52,7 +53,7 @@ pub fn SideBarComponent(
             settings_write.active_file = None;
         }
         if let Ok(json) = to_string(&*settings_write) {
-            let _ = write("settings.json", json);
+            let _ = write(settings_path(), json);
         } else {
         }
     };
@@ -61,7 +62,7 @@ pub fn SideBarComponent(
         let mut settings_write = SETTINGS.write();
         settings_write.active_file = Some(path_to_select);
         if let Ok(json) = to_string(&*settings_write) {
-            let _ = write("settings.json", json);
+            let _ = write(settings_path(), json);
         }
     };
 

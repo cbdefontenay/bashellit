@@ -1,6 +1,7 @@
 ﻿use std::env::consts::OS;
-use std::env::var;
-use std::path::Path;
+use std::env::{var, var_os};
+use std::fs::create_dir_all;
+use std::path::{Path, PathBuf};
 use std::process::{Command, Stdio};
 
 use crate::SETTINGS;
@@ -59,4 +60,20 @@ fn open_shell_in_dir(dir: &Path) -> Result<(), String> {
     }
 
     Err("Could not find a terminal. Try setting the $TERMINAL environment variable.".to_string())
+}
+
+/// Returns a writable, persistent config path for the app
+pub fn settings_path() -> PathBuf {
+    // dirs-next correctly handles:
+    // - XDG_CONFIG_HOME
+    // - ~/.config fallback
+    // - weird HOME setups
+    let base = dirs_next::config_dir()
+        .unwrap_or_else(|| PathBuf::from("/tmp"));
+
+    let app_dir = base.join("bash-editor");
+
+    let _ = create_dir_all(&app_dir);
+
+    app_dir.join("settings.json")
 }

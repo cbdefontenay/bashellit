@@ -4,7 +4,7 @@ use crate::icons::LoaderIcon;
 #[component]
 pub fn LoaderComponent() -> Element {
     rsx! {
-        div { class: "fixed inset-0 z-[100] flex flex-col items-center justify-center bg-(--background) transition-all duration-500",
+        div { class: "absolute inset-0 z-[100] flex flex-col items-center justify-center bg-(--background) transition-all duration-500",
             div { class: "relative",
                 div { class: "absolute inset-0 bg-(--primary) opacity-20 blur-3xl rounded-full animate-pulse" }
                 div { class: "relative flex flex-col items-center",

@@ -1,5 +1,7 @@
+use std::fs::write;
 use crate::{SETTINGS, SHOW_SETTINGS};
 use dioxus::prelude::*;
+use crate::helpers::settings_path;
 
 #[component]
 pub fn SettingsComponent() -> Element {
@@ -57,7 +59,7 @@ pub fn SettingsComponent() -> Element {
                                                     current_settings.theme = theme_id.clone();
                                                     *SETTINGS.write() = current_settings.clone();
                                                     if let Ok(json) = serde_json::to_string(&current_settings) {
-                                                        let _ = std::fs::write("settings.json", json);
+                                                        let _ = write(settings_path(), json);
                                                     }
                                                 },
                                                 span { class: "font-medium", "{name}" }

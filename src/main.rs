@@ -12,6 +12,7 @@ use serde::{Deserialize, Serialize};
 use serde_json;
 use serde_json::from_str;
 use tokio::time::sleep;
+use crate::helpers::settings_path;
 
 const FAVICON: Asset = asset!("/assets/favicon.ico");
 const MAIN_CSS: Asset = asset!("/assets/main.css");
@@ -35,8 +36,11 @@ impl Default for AppSettings {
 }
 
 pub static SETTINGS: GlobalSignal<AppSettings> = Signal::global(|| {
-    let content = read_to_string("settings.json").unwrap_or_default();
-    from_str(&content).unwrap_or_default()
+    let path = settings_path();
+    read_to_string(path)
+        .ok()
+        .and_then(|content| from_str(&content).ok())
+        .unwrap_or_default()
 });
 
 pub static SHOW_SETTINGS: GlobalSignal<bool> = Signal::global(|| false);
@@ -44,7 +48,7 @@ pub static LAST_ERROR: GlobalSignal<Option<String>> = Signal::global(|| None);
 
 fn main() {
     let window = WindowBuilder::new()
-        .with_title("Bashellit")
+        // .with_title("Bashellit")
         .with_visible(false)
         // .with_inner_size(LogicalSize::new(4000, 2000))
         .with_resizable(true)
