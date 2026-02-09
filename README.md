@@ -1,5 +1,18 @@
 # Bashellit
 
+### Installation:
+
+At the moment ***Bashellit*** is available only on *Arch Linux* based distributions with the following command:
+
+```bash
+yay -S bashellit
+```
+```bash
+paru -S bashellit
+```
+
+### What is Bashellit?
+
 **Bashellit** is a lightweight editor dedicated to writing Bash scripts on Linux.
 
 There are already excellent IDEs and editors available, such as VS Code, but they often come with a large footprint and many features that are unnecessary when your only goal is to write simple shell scripts. Bashellit was born out of that frustration: the need for a focused, minimal tool that does one thing well.
@@ -35,7 +48,8 @@ Bashellit is a fully local application. It does not store or transmit any user d
 
 It is built using:
 
-- **Dioxus**
+- **Tauri**
+- **React**
 - **Rust**
 - **Tailwindcss**
 
